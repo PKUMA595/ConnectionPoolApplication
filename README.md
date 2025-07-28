@@ -1,43 +1,53 @@
-🚀 ConnectionPoolApplication
-A Spring Boot project demonstrating how to implement and use a Custom Connection Pool for managing database connections manually — without relying on third-party libraries like HikariCP.
+# 🚀 ConnectionPoolApplication
 
-✅ This project uses H2 In-Memory Database, and JDBC (not JPA) for SQL operations, enabling better understanding of manual connection handling.
+A Spring Boot project demonstrating how to **implement and use a Custom Connection Pool** for managing database connections manually — without relying on third-party libraries like HikariCP.
 
-📌 Project Highlights
-✅ Custom Connection Pool (configurable size)
+This project is built using **JDBC** and **H2 In-Memory Database** to give you a clear understanding of how connection pooling works at a low level.
 
-✅ Manual Connection Acquire & Release logic
+---
 
-✅ JDBC-based Repository layer with SQL queries
+## 📌 Project Highlights
 
-✅ In-memory H2 database (no external setup required)
+- ✅ Custom Connection Pool (configurable pool size)
+- ✅ Manual connection acquire & release logic
+- ✅ JDBC-based Repository Layer using raw SQL queries
+- ✅ In-memory H2 Database (no setup required)
+- ✅ Clean architecture: `Controller → Repository`
+- ✅ REST APIs tested using Postman
 
-✅ Clean architecture (Controller → Repository)
+---
 
-✅ Tested using Postman for REST API endpoints
+## 🏗️ Architecture
+
+```text
++------------+       +---------------+        +------------------------+
+|  Controller| <---> | Repository     | <---> | CustomConnectionPool   |
++------------+       +---------------+        +------------------------+
+                                           |
+                                           |--> DB (H2 In-Memory)
 
 🛠️ Tech Stack
-Layer	Technology Used
-Framework	Spring Boot
-Language	Java
-Build Tool	Maven
-DB	H2 In-Memory
-REST Tool	Postman
-Data Access	JDBC + Custom Pool
+Framework -	Spring Boot
+Language -	Java
+Build Tool -	Maven
+Database -	H2 (In-Memory)
+Data Access	- JDBC + Custom Pool
+REST Testing -	Postman
 
-CustomConnectionPool:
-    Manages a pool of DB connections using a thread-safe BlockingQueue.
+CustomConnectionPool Logic
 
-Handles:
+    Manages a fixed number of database connections using BlockingQueue
 
-    Initializing N number of connections
+Supports:
     
-    Acquiring connection with timeout
+    ✅ Initializing a pool with N connections
     
-    Releasing connection back to pool
+    ✅ Thread-safe acquisition of connection (with timeout)
     
-    Graceful shutdown
+    ✅ Releasing connection back to pool
+    
+    ✅ Graceful shutdown of all connections
 
 👨‍💻 Author
 Piyush Kumar
-Java Backend Developer | Spring Boot | Microservices | SQL
+Java Backend Developer | Spring Boot | Microservices
